@@ -12,11 +12,11 @@
 
 <div class="jumbotron">
   <h1 class="display-4">Time History screening 1.0</h1>
-  <p class="lead">This is screening of trainsient timepoints from the given inputs .</p>
+  <p class="lead">This is screening of transient timepoints from the given inputs .</p>
   <hr class="my-4">
   <p>Criteria used - Peak points, Valley points, Max delta-T value points.</p>
   <a class="btn btn-primary btn-lg" href="{{ url_for('home_page') }}" role="button">Home</a>
-  <a class="btn btn-primary btn-lg" href="/about" role="button">About</a>
+  <a class="btn btn-success btn-lg" href="/about" role="button">About</a>
 </div>
 
 <form class="" action="data" method="post" enctype="multipart/form-data">
@@ -26,28 +26,34 @@
     <input type="submit" name="" value="Execute & Output ">
     <label > &nbsp Output as filename.xlsx : &nbsp; </label>
 </form>
+<br/>
 <form class="" action="valley_data" method="post" enctype="multipart/form-data">
-
-    <input type="submit" name="" value="Valley points">
+     <label > &nbsp  &nbsp &nbsp </label>
+    <input type="submit" class="btn btn-info" name="" value="Valley points">
     <label > &nbsp Screened valley points : &nbsp; </label>
 </form>
-
+<br>
 <form class="" action="peak_data" method="post" enctype="multipart/form-data">
-
-    <input type="submit" name="" value="Peak points" class="dataframe">
-    <label > &nbsp Screened Peak points : &nbsp; </label>
+    <label > &nbsp;  &nbsp; &nbsp; </label>
+    <input type="submit"  class="btn btn-info" name="" value="Peak points" >
+    <label > &nbsp &nbsp Screened Peak points : &nbsp; </label>
 </form>
-<form class="" action="delta" method="post" enctype="multipart/form-data">
+<br>
 
-    <input type="submit" name="" value="Delta points" class="dataframe">
-    <label > &nbsp Screened Delta points : &nbsp; </label>
-</form>
 
-<form class="" action="clear_data" method="post" enctype="multipart/form-data">
+    <form class="" action="delta"  method="post" enctype="multipart/form-data">
+        <label > &nbsp  &nbsp &nbsp </label>
+        <input type="submit" class="btn btn-info" name="" value="Delta points" >
+        <label > &nbsp Screened Delta points : &nbsp; </label>
+    </form>
+    <br>
+    <form class="" action="clear_data" method="post" enctype="multipart/form-data">
+        <label > &nbsp  &nbsp &nbsp </label>
+        <input type="submit" class="btn btn-info" name="" value="Clear Data">
+        <label > &nbsp &nbsp Clear data files : &nbsp; </label>
+    </form>
+    <br>
 
-    <input type="submit" name="" value="Clear Data">
-    <label > &nbsp Clear data files : &nbsp; </label>
-</form>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
