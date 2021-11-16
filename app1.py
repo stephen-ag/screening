@@ -33,7 +33,7 @@ def delta_data():
             pack2 = []
             for i in col2:
                 time_series2 = df22[i]
-                indices2 = find_peaks(time_series2, distance=50)[0]  # 50 sample points considered for finding peak
+                indices2 = find_peaks(time_series2, distance=40)[0]  # 50 sample points considered for finding peak
                 pack2.append(indices2)
 
                 step = []
@@ -52,7 +52,7 @@ def delta_data():
             del2 = seriee2.tolist()
             fss2.sort()
             delta_df = df22.loc[fss2]
-            return render_template('delta.html',delta=delta_df.to_html())
+            return render_template('delta.html',delta=delta_df.to_html(),list=list(fss2),count = len(fss2))
         except Exception as e:
             print('The Exception message is: ', e)
             return 'something is wrong check for input file'
@@ -66,9 +66,9 @@ def clear_data():
         comment="Tempvstime file has been cleared"
     if os.path.isfile(filepath1):
         os.remove(filepath1)
-        comment = "Temp File has been cleared"
+        comment = "  Temp File has been cleared"
     else:
-        comment="No file Exists"
+        comment = "  No file Exists"
     return render_template('download.html', clear_data=comment)
 @app.route('/valley_data', methods=['GET', 'POST'])
 def valley_data():
@@ -103,7 +103,7 @@ def valley_data():
             fss1.sort()
             valley_df = output3.loc[fss1]
 
-            return render_template('valley_data.html', data1=valley_df.to_html())
+            return render_template('valley_data.html', data1=valley_df.to_html(),list=list(fss1), count = len(fss1))
         except Exception as e:
             print('The Exception message is: ', e)
             return 'something is wrong check for input file'
@@ -141,7 +141,7 @@ def peak_data():
             pple = seriee.tolist()
             fsss.sort()
             peak_df = output2.loc[fsss]
-            return render_template('peak_data.html', data2=peak_df.to_html())
+            return render_template('peak_data.html', data2=peak_df.to_html(),list=list(fsss), count = len(fsss))
         except Exception as e:
             print('The Exception message is: ', e)
             return 'something is wrong check for input file'
@@ -234,7 +234,7 @@ def data():
             pack2 = []
             for i in col2:
                 time_series2 = df2[i]
-                indices2 = find_peaks(time_series2, distance=50)[0] # 50 sample points considered for finding peak
+                indices2 = find_peaks(time_series2, distance=40)[0] # 50 sample points considered for finding peak
                 pack2.append(indices2)
 
                 step = []
@@ -262,7 +262,10 @@ def data():
             screened_list = merged_data
             fss3 = [int(x) for x in screened_list]
             fss3.sort()
-            print(len(fss3))
+            print("The final count with peak points =", len(fss))
+            print("The final count with valley points =", len(fss1))
+            print("The final count with delta points =", len(fss2))
+            print("The final count with peak,valley and delta points =",len(fss3))
             final_list = data1.loc[fss3]
 
             return Response(
@@ -272,7 +275,7 @@ def data():
                              "attachment; filename=filename.csv"})
         except Exception as e:
             print('The Exception message is: ', e)
-            return 'something is wrong check for input file'
+            return 'something is wrong in data module, check for input file'
         #return render_template('data.html', data=fss, data1=fss1, data2=fss2, screened_list = fss3)
         #return render_template('data.html', data=merged_data)
        # return render_template('valley.html', data1=temp_df.to_html())
